@@ -154,7 +154,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 23-10-2025 21:43</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 24-10-2025 19:19</span>
     <br style="clear:left"/>
 </div>
 
@@ -197,9 +197,9 @@ Para poder acceder al contenido.
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='fa fa-check-circle-o success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='fa fa-times-circle failure-icon fa-2x' title='FAILURE'></i></a></span>
                             <span class="test-case-title">
-                                <span class="success-color">Verificar la autenticacion exitosa en la p&aacute;gina de Facebok.
+                                <span class="failing-color">Verificar la autenticacion exitosa en la p&aacute;gina de Facebok.
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -216,6 +216,45 @@ Para poder acceder al contenido.
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">Assertion error: Expected validacion loginExpected: is (true) but: was (false)</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall""
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="far fa-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-overall">
+            <div class="card">
+                <div class="card-header">
+                    <h4>java.lang.AssertionError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>co.com.AutoFacebook.stepsdefinitions.AutenticacionStepDefinitions.seDebeVerificarQueElUsuarioAhoraCuenteConElRolDocente(AutenticacionStepDefinitions.java:30)<br />✽.se debe verificar que el usuario ahora cuente con el rol Docente.(src/test/resources/features/autenticacion_facebook.feature:16)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                <div class="panel-body">
+                    <a href="#" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
         <div class="slider-wrapper theme-default">
             <div id="slider">
                 <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Dado que el usuario se encuentra en la p&aacute;gina de inicio de sesi&oacute;n" width="1584"/>
@@ -225,21 +264,17 @@ Para poder acceder al contenido.
                 <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Dado que el usuario se encuentra en la p&aacute;gina de inicio de sesi&oacute;n (completed)" width="1584"/>
                 <img src="611e3842a962dfc9749a4f986825ef97537e62a21478622926e277d3be88bfde.png" title=" Cuando le asigne el rol docente a un usuario
 | Usuario | Clave |
-| prueba@gmail.com | Prueba |" width="1584"/>
+| jhon | teo |" width="1584"/>
                 <img src="611e3842a962dfc9749a4f986825ef97537e62a21478622926e277d3be88bfde.png" title=" Usuario autenticarse" width="1584"/>
                 <img src="611e3842a962dfc9749a4f986825ef97537e62a21478622926e277d3be88bfde.png" title=" Usuario clicks on Ingreso del Usuario" width="1584"/>
-                <img src="e5c1a5b7ede206de4b5540b93c47974bea33ec6a60b869f1b8eeb0a77a3f2e80.png" title=" Usuario enters 'prueba@gmail.com' into Ingreso del Usuario" width="1584"/>
-                <img src="52f109707fb7351e67fb5f7b0ee4c73209ed97063ec15eecf21cabb6e2821e21.png" title=" Usuario clicks on Ingreso del password" width="1584"/>
-                <img src="c36088059c2d3491ad46611ec1f2bfc2b7013b358f9b0bbb964047dfe1800ad7.png" title=" Usuario enters 'Prueba' into Ingreso del password" width="1584"/>
-                <img src="2c3b0006659202bc9e05a637e6c90bc120ca6e1843c2b7a18ef071ef33447e3a.png" title=" Usuario clicks on Clic boton inicio sesion" width="1584"/>
-                <img src="2c3b0006659202bc9e05a637e6c90bc120ca6e1843c2b7a18ef071ef33447e3a.png" title=" Cuando le asigne el rol docente a un usuario
+                <img src="db466bc45844666aeeec00332bc3d7a84be4733f2f8d4a0d5bbbb8a5cae17a74.png" title=" Usuario enters 'jhon' into Ingreso del Usuario" width="1584"/>
+                <img src="214ab5cebfb94a06051c4bc2ec66b97fbbd1057658ea64a6cf17b90d44b5f4a5.png" title=" Usuario clicks on Ingreso del password" width="1584"/>
+                <img src="8ac4388f5f414738fa40882db4ce7d775afb862c0e7289e569fea58e10dc3c71.png" title=" Usuario enters 'teo' into Ingreso del password" width="1584"/>
+                <img src="2b1318ffdaf5ca445ae88c0afc2fb8411dea5841e420c9e477e0ce456b7965fb.png" title=" Usuario clicks on Clic boton inicio sesion" width="1584"/>
+                <img src="2b1318ffdaf5ca445ae88c0afc2fb8411dea5841e420c9e477e0ce456b7965fb.png" title=" Usuario autenticarse (completed)" width="1584"/>
+                <img src="2b1318ffdaf5ca445ae88c0afc2fb8411dea5841e420c9e477e0ce456b7965fb.png" title=" Cuando le asigne el rol docente a un usuario
 | Usuario | Clave |
-| prueba@gmail.com | Prueba |" width="1584"/>
-                <img src="2c3b0006659202bc9e05a637e6c90bc120ca6e1843c2b7a18ef071ef33447e3a.png" title=" Usuario autenticarse (completed)" width="1584"/>
-                <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Entonces se debe verificar que el usuario ahora cuente con el rol Docente." width="1584"/>
-                <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Usuario abrir pagina" width="1584"/>
-                <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Usuario opens the Inicio facebook" width="1584"/>
-                <img src="557e09fffa3a3edf5a0ca2d1eca802c11ffca68bb336e01a9bcb9a182fde8235.png" title=" Entonces se debe verificar que el usuario ahora cuente con el rol Docente. (completed): <span class='success-color'>SUCCESS</span>" width="1584"/>
+| jhon | teo | (completed): <span class='failing-color'>FAILURE</span>" width="1584"/>
             </div>
         </div>
 

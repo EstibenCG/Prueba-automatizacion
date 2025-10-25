@@ -1,6 +1,7 @@
 package co.com.AutoFacebook.stepsdefinitions;
 
 import co.com.AutoFacebook.models.CredencialesInicioSesion;
+import co.com.AutoFacebook.questions.ValidacionLogin;
 import co.com.AutoFacebook.tasks.AbrirPagina;
 import co.com.AutoFacebook.tasks.Autenticarse;
 import cucumber.api.DataTable;
@@ -10,6 +11,7 @@ import cucumber.api.java.es.Entonces;
 
 import java.util.List;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class AutenticacionStepDefinitions {
@@ -25,7 +27,7 @@ public class AutenticacionStepDefinitions {
 
     @Entonces("^se debe verificar que el usuario ahora cuente con el rol Docente\\.$")
     public void seDebeVerificarQueElUsuarioAhoraCuenteConElRolDocente() {
-        theActorInTheSpotlight().wasAbleTo(AbrirPagina.lapagina());
+        theActorInTheSpotlight().should(seeThat(ValidacionLogin.validacionLogin()));
     }
 
 }

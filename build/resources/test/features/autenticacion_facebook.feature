@@ -11,6 +11,6 @@ Característica: Autenticacion en la pagina de Facebook
   Escenario: Verificar la autenticacion exitosa en la página de Facebok.
     Dado que el usuario se encuentra en la página de inicio de sesión
     Cuando le asigne el rol docente a un usuario
-      | Usuario          | Clave  |
-      | prueba@gmail.com | Prueba |
+      | Usuario | Clave |
+      | jhon    | teo   |
     Entonces se debe verificar que el usuario ahora cuente con el rol Docente.

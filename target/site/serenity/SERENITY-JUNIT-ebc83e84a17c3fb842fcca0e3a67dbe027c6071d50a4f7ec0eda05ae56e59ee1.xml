@@ -1,1 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Autenticacion en la pagina de Facebook" skipped="0" tests="1" time="5.54" timestamp="2025-10-23 09:43:41"><testcase name="Verificar la autenticacion exitosa en la página de Facebok."/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Autenticacion en la pagina de Facebook" skipped="0" tests="1" time="14.77" timestamp="2025-10-24 07:19:07"><testcase name="Verificar la autenticacion exitosa en la página de Facebok."><failure message="Expected validacion login&#13;&#10;Expected: is &lt;true&gt;&#13;&#10;     but: was &lt;false&gt;" type="java.lang.AssertionError">Expected validacion login&#13;
+Expected: is &lt;true&gt;&#13;
+     but: was &lt;false&gt;</failure><system-err>Expected validacion login&#13;
+Expected: is &lt;true&gt;&#13;
+     but: was &lt;false&gt;&#13;
+co.com.AutoFacebook.stepsdefinitions.AutenticacionStepDefinitions.seDebeVerificarQueElUsuarioAhoraCuenteConElRolDocente(AutenticacionStepDefinitions.java:30)&#13;
+✽.se debe verificar que el usuario ahora cuente con el rol Docente.(src/test/resources/features/autenticacion_facebook.feature:16)&#13;
+</system-err></testcase></testsuite>

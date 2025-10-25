@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">6.185s</div>
+<div class="counter">15.467s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,13 +61,34 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Standard error</a>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="Verificar la autenticacion exitosa en la página de Facebok."></a>
+<h3 class="failures">Verificar la autenticacion exitosa en la página de Facebok.</h3>
+<span class="code">
+<pre>java.lang.AssertionError: Expected validacion login
+Expected: is &lt;true&gt;
+     but: was &lt;false&gt;
+	at net.serenitybdd.screenplay.ErrorTally.throwSummaryExceptionFrom(ErrorTally.java:36)
+	at net.serenitybdd.screenplay.ErrorTally.reportAnyErrors(ErrorTally.java:30)
+	at net.serenitybdd.screenplay.Actor.should(Actor.java:316)
+	at co.com.AutoFacebook.stepsdefinitions.AutenticacionStepDefinitions.seDebeVerificarQueElUsuarioAhoraCuenteConElRolDocente(AutenticacionStepDefinitions.java:30)
+	at ✽.se debe verificar que el usuario ahora cuente con el rol Docente.(src/test/resources/features/autenticacion_facebook.feature:16)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -78,35 +99,42 @@
 </tr>
 </thead>
 <tr>
-<td class="success">Verificar la autenticacion exitosa en la página de Facebok.</td>
-<td class="success">6.185s</td>
-<td class="success">passed</td>
+<td class="failures">Verificar la autenticacion exitosa en la página de Facebok.</td>
+<td class="failures">15.467s</td>
+<td class="failures">failed</td>
 </tr>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>oct. 23, 2025 9:43:41 P.M. org.openqa.selenium.remote.DesiredCapabilities chrome
+<pre>oct. 24, 2025 7:19:08 P.M. org.openqa.selenium.remote.DesiredCapabilities chrome
 INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
 [Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Instantiating driver
 [Test worker] INFO net.serenitybdd.core.webdriver.driverproviders.ProvideNewDriver - Driver capabilities: Capabilities {acceptInsecureCerts: false, browserName: chrome, goog:chromeOptions: {args: [], extensions: [], prefs: {behavior: allow}}, loggingPrefs: org.openqa.selenium.logging..., name: proyecto, platform: ANY, unhandledPromptBehavior: ignore, version: }
-Starting ChromeDriver 141.0.7390.122 (b477534e7e10d193e916cd4e2967c589383625b2-refs/branch-heads/7390@{#2667}) on port 24992
+Starting ChromeDriver 141.0.7390.122 (b477534e7e10d193e916cd4e2967c589383625b2-refs/branch-heads/7390@{#2667}) on port 16016
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully on port 24992.
-oct. 23, 2025 9:43:43 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
+ChromeDriver was started successfully on port 16016.
+oct. 24, 2025 7:19:10 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
-[Test worker] INFO net.thucydides.core.steps.ConsoleLoggingListener - 
-        __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
-  _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
- (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
-  _|_____| |   | | | |___ ___) || |   |  __/ ___ \ ___) |___) | |___| |_| |
- (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
-        /_/                                                                
+[Test worker] ERROR co.com.AutoFacebook.questions.ValidacionLogin - No se encontró el MensajeCannot locate an element using xpath=//h1[@class='post-title' and text()='Logged In Successfully']
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'PC-EDWIN1538', ip: '192.168.10.15', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15'
+Driver info: driver.version: RemoteWebDriver
+[Test worker] ERROR net.thucydides.core.steps.ConsoleLoggingListener - 
+           __  _____ _____ ____ _____   _____ _    ___ _     _____ ____  
+  _       / / |_   _| ____/ ___|_   _| |  ___/ \  |_ _| |   | ____|  _ \ 
+ (_)_____| |    | | |  _| \___ \ | |   | |_ / _ \  | || |   |  _| | | | |
+  _|_____| |    | | | |___ ___) || |   |  _/ ___ \ | || |___| |___| |_| |
+ (_)     | |    |_| |_____|____/ |_|   |_|/_/   \_\___|_____|_____|____/ 
+          \_\                                                            
 
-TEST PASSED: Verificar la autenticacion exitosa en la página de Facebok.
-----------------------------------------------------------------------------
+TEST FAILED: Verificar la autenticacion exitosa en la página de Facebok.
+--------------------------------------------------------------------------
+[Test worker] ERROR net.thucydides.core.steps.ConsoleLoggingListener - TEST FAILED AT STEP Then validacion login
+[Test worker] ERROR net.thucydides.core.steps.ConsoleLoggingListener - Expected validacion loginExpected: is &lt;true&gt; but: was &lt;false&gt;
 </pre>
 </span>
 </div>
@@ -118,7 +146,7 @@ TEST PASSED: Verificar la autenticacion exitosa en la página de Facebok.
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10</a> at 23 oct. 2025 21:43:48</p>
+<a href="http://www.gradle.org">Gradle 8.10</a> at 24 oct. 2025 19:19:24</p>
 </div>
 </div>
 </body>
