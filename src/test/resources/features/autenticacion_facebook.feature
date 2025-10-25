@@ -12,5 +12,5 @@ Característica: Autenticacion en la pagina de Facebook
     Dado que el usuario se encuentra en la página de inicio de sesión
     Cuando le asigne el rol docente a un usuario
       | Usuario | Clave       |
-      | student    | Password123 |
+      | Jaideen    | Cont123* |
     Entonces se debe verificar que el usuario ahora cuente con el rol Docente.

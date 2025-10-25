@@ -3,13 +3,6 @@
 build/
 target/
 
-# Reportes
-reports/
-reportes/
-serenity-reports/
-cucumber-reports/
-test-output/
-
 # IDE
 .idea/
 *.iml
