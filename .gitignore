@@ -1,0 +1,19 @@
+# Gradle y build
+.gradle/
+build/
+target/
+
+# Reportes
+reports/
+reportes/
+serenity-reports/
+cucumber-reports/
+test-output/
+
+# IDE
+.idea/
+*.iml
+
+# Otros
+*.log
+*.tmp
