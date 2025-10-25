@@ -2,17 +2,16 @@ package co.com.AutoFacebook.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import net.serenitybdd.screenplay.questions.Text;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
-import static co.com.AutoFacebook.userinterface.autenticacion.MENSAJE_LOGIN;
 
 
 public class ValidacionLogin implements Question<Boolean>{
     private static final Logger logger = LoggerFactory.getLogger(ValidacionLogin.class);
 
-    private static final String MENSAJE_ESPERADO = "Logged In Successfully";
+    private static final String MENSAJE_ESPERADO = "/u/Jaideen";
 
     public static ValidacionLogin validacionLogin(){
         return new ValidacionLogin();
@@ -21,11 +20,11 @@ public class ValidacionLogin implements Question<Boolean>{
     @Override
     public Boolean answeredBy (Actor actor){
         try{
-            String texto = Text.of(MENSAJE_LOGIN).viewedBy(actor).asString().trim();
-            logger.info("Texto encontrado en MENSAE LOGIN: " +texto);
-            return MENSAJE_ESPERADO.equalsIgnoreCase(texto);
+            String currentUrl = BrowseTheWeb.as(actor).getDriver().getCurrentUrl();
+            logger.info("URL actual: " + currentUrl);
+            return currentUrl != null && currentUrl.toLowerCase().contains(MENSAJE_ESPERADO.toLowerCase());
         }catch(Exception e){
-            logger.error("No se encontró el Mensaje" +e.getMessage());
+            logger.error("No se pudo obtener la URL actual: " + e.getMessage());
             return false;
         }
     }
