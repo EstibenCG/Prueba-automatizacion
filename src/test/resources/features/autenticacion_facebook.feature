@@ -1,5 +1,5 @@
 #language: es
-  #author: Edwin1538
+  #author: Estiben
 
 Característica: Autenticacion en la pagina de Facebook
   Como usuario de Facebook
