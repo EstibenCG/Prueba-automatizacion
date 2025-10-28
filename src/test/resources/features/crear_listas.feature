@@ -1,4 +1,5 @@
 #language: es
+#author: Estiben
 
 Característica: Crear listas en TMDB
   Como usuario autenticado
