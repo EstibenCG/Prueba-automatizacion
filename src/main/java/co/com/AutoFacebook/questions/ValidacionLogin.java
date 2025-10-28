@@ -4,9 +4,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
-
 
 public class ValidacionLogin implements Question<Boolean>{
     private static final Logger logger = LoggerFactory.getLogger(ValidacionLogin.class);

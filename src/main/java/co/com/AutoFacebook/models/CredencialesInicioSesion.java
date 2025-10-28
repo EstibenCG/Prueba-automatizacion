@@ -1,7 +1,7 @@
 package co.com.AutoFacebook.models;
 
 public class CredencialesInicioSesion {
-    private String usuario;  // Cambiar 'usuarios' a 'usuario'
+    private String usuario;
     private String clave;
 
     public String getUsuario() {
@@ -19,7 +19,7 @@ public class CredencialesInicioSesion {
     }
 
     public void credencialesInicioSesion(String usuario, String clave) {
-        this.usuario = usuario;  // Cambiar 'usuarios' a 'usuario'
+        this.usuario = usuario;
         this.clave = clave;
     }
 }

@@ -7,11 +7,12 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actions.Click;
 import static co.com.AutoFacebook.userinterface.autenticacion.LINK_LOGIN;
+
 public class AbrirPagina implements Task {
 
     public static AbrirPagina lapagina(){ return Tasks.instrumented(AbrirPagina.class);}
 
-        @Override
+    @Override
     public <T extends Actor> void performAs(T actor){
         actor.attemptsTo(
                 Open.browserOn(new InicioFacebook()),
