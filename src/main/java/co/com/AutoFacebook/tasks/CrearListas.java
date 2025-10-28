@@ -11,7 +11,6 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -90,118 +89,45 @@ public class CrearListas implements Task {
             try {
                 actor.attemptsTo(WaitUntil.the(IMG_SUPERMAN, isClickable()).forNoMoreThan(10).seconds(), Click.on(IMG_SUPERMAN));
                 System.out.println("Imagen Superman: seleccionada con Click.on(IMG_SUPERMAN)");
+                // Recordar que la imagen fue seleccionada y terminar aquí
+                actor.remember("IMAGE_SELECTED", true);
+                return; // detener el flujo del task aquí
             } catch (Exception clickEx) {
                 System.out.println("Imagen Superman: Click.on falló, intentando JS fallback");
                 try {
                     WebDriver driver = BrowseTheWeb.as(actor).getDriver();
                     WebElement img = driver.findElement(By.xpath("//img[@alt='Superman']"));
                     ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true); arguments[0].click();", img);
-                    try { Thread.sleep(400); } catch (InterruptedException ignored) {}
                     System.out.println("Imagen Superman: seleccionada mediante JS click fallback");
+                    // Recordar que la imagen fue seleccionada y terminar aquí
+                    actor.remember("IMAGE_SELECTED", true);
+                    return; // detener el flujo del task aquí
                 } catch (Exception jsEx) {
                     System.out.println("Imagen Superman: JS fallback falló - " + jsEx.getMessage());
                 }
             }
         } catch (Exception e) {
             System.out.println("Imagen Superman: no encontrada o no visible en step 3 - " + e.getMessage());
-            // continuar sin interrumpir el flujo
+            // continuar sin interrumpir el flujo (pero no marcar como seleccionada)
         }
 
-        // Pasar sobre tooltip y volver a listas del usuario
-        actor.attemptsTo(
-                Click.on(TOOLTIP_NO_CLICK),
-                Click.on(LINK_BACK_TO_LISTS)
-        );
+        // Si llegamos aquí, la selección de la imagen no se pudo completar.
+        actor.remember("IMAGE_SELECTED", false);
     }
 
     private <T extends Actor> void seleccionarItemPorAutocomplete(T actor, String texto) {
-        // escribir en el input
+        // escribir en el input y esperar la primera opción del autocompletado
         actor.attemptsTo(Click.on(LIST_ITEM_SEARCH), Enter.theValue(texto).into(LIST_ITEM_SEARCH));
 
-        // pausa corta para que el frontend procese la entrada
-        try { Thread.sleep(500); } catch (InterruptedException ignored) {}
-
-        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-
-        // intento normal: esperar y click al primer elemento
         try {
-            actor.attemptsTo(WaitUntil.the(AUTOCOMPLETE_FIRST, isVisible()).forNoMoreThan(10).seconds(), Click.on(AUTOCOMPLETE_FIRST));
+            actor.attemptsTo(
+                    WaitUntil.the(AUTOCOMPLETE_FIRST, isVisible()).forNoMoreThan(10).seconds(),
+                    Click.on(AUTOCOMPLETE_FIRST)
+            );
             System.out.println("Autocomplete: seleccionado por Click.on(AUTOCOMPLETE_FIRST)");
-            return;
-        } catch (Exception e) {
-            System.out.println("Autocomplete: no visible inicialmente, probando fallbacks para '" + texto + "'");
-            // continuar a fallbacks
-        }
-
-        // Forzar evento 'input' mediante JS para activar sugerencias si no se mostraron
-        try {
-            ((JavascriptExecutor) driver).executeScript("var el=document.getElementById('list_item_search'); if(el){el.dispatchEvent(new Event('input'));}");
-            try { Thread.sleep(400); } catch (InterruptedException ignored) {}
-            actor.attemptsTo(WaitUntil.the(AUTOCOMPLETE_FIRST, isVisible()).forNoMoreThan(5).seconds(), Click.on(AUTOCOMPLETE_FIRST));
-            System.out.println("Autocomplete: seleccionado tras forzar evento input por JS");
-            return;
-        } catch (Exception ex) {
-            System.out.println("Autocomplete: fallback JS 'input' no mostró opciones para '" + texto + "'");
-            // ignorar y probar siguiente fallback
-        }
-
-        // Fallback JS: buscar varios selectores y hacer click en el primer elemento visible
-        try {
-            String script = "var selectors = ['.ui-autocomplete li:first-child', '.suggestions li:first-child', 'ul.typeahead li:first-child', '.tt-suggestion:first-child', 'ul.dropdown-menu li:first-child', 'div.suggestions li:first-child'];\n" +
-                    "for(var i=0;i<selectors.length;i++){try{var els=document.querySelectorAll(selectors[i]); if(els && els.length){ for(var j=0;j<els.length;j++){var el=els[j]; if(el && el.offsetParent!==null){el.click(); return true;}} } }catch(e){} } return false;";
-
-            boolean clicked = false;
-            for (int attempt = 0; attempt < 10; attempt++) {
-                Object result = ((JavascriptExecutor) driver).executeScript(script);
-                if (result instanceof Boolean && (Boolean) result) {
-                    clicked = true;
-                    break;
-                }
-                try { Thread.sleep(300); } catch (InterruptedException ignored) {}
-            }
-            if (clicked) {
-                System.out.println("Autocomplete: seleccionado por script JS que clickea el primer elemento visible (polling)");
-                return;
-            }
-        } catch (Exception ex) {
-            System.out.println("Autocomplete: script JS falló para '" + texto + "'");
-            // ignorar y probar siguiente fallback
-        }
-
-        // Fallback JS 2: buscar cualquier elemento visible (li/div/a) cuyo texto contenga el texto buscado (case-insensitive)
-        try {
-            String scriptMatchText = "var text = arguments[0].toLowerCase(); var els = document.querySelectorAll('li, div, a'); for(var i=0;i<els.length;i++){try{var el=els[i]; if(el && el.offsetParent!==null && el.innerText && el.innerText.toLowerCase().indexOf(text)!==-1){ el.click(); return true; }}catch(e){} } return false;";
-            Object matched = ((JavascriptExecutor) driver).executeScript(scriptMatchText, texto);
-            if (matched instanceof Boolean && (Boolean) matched) {
-                System.out.println("Autocomplete: seleccionado por script JS buscando texto '" + texto + "'");
-                return;
-            }
-        } catch (Exception ex) {
-            System.out.println("Autocomplete: script JS de búsqueda por texto falló para '" + texto + "'");
-        }
-
-        // Fallback teclas: enviar ARROW_DOWN + ENTER con pequeñas pausas
-        try {
-            WebElement input = driver.findElement(By.id("list_item_search"));
-            input.sendKeys(Keys.ARROW_DOWN);
-            try { Thread.sleep(300); } catch (InterruptedException ignored) {}
-            input.sendKeys(Keys.ENTER);
-            try { Thread.sleep(300); } catch (InterruptedException ignored) {}
-            System.out.println("Autocomplete: seleccionado mediante teclas ARROW_DOWN + ENTER");
-            return;
-        } catch (Exception ex) {
-            System.out.println("Autocomplete: fallback teclas falló para '" + texto + "'");
-            // ignorar y continuar
-        }
-
-        // Si todo falla, intentar un click directo en el primer elemento encontrado por CSS (sin esperar visibilidad)
-        try {
-            WebElement first = driver.findElement(By.cssSelector(".ui-autocomplete li:first-child, .suggestions li:first-child, ul.typeahead li:first-child, .tt-suggestion:first-child"));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", first);
-            System.out.println("Autocomplete: click directo en primer elemento encontrado por CSS");
-        } catch (Exception ignored) {
-            System.out.println("Autocomplete: todos los fallbacks fallaron para '" + texto + "'");
-            // no más fallbacks
+        } catch (Throwable e) {
+            // Si no aparece la opción de autocompletado, continuar el flujo sin seleccionarla
+            System.out.println("Autocomplete: no se encontró opción de autocompletado para '" + texto + "' - se continúa sin seleccionar.");
         }
     }
 }

@@ -41,10 +41,5 @@ public class ListasPage extends PageObject {
     // Imagen Superman por alt
     public static Target IMG_SUPERMAN = Target.the("Imagen Superman").locatedBy("//img[@alt='Superman']");
 
-    // Elemento tooltip hover
-    public static Target TOOLTIP_NO_CLICK = Target.the("Tooltip hover").located(By.cssSelector(".no_click.tooltip_hover"));
-
-    // Link para regresar a la lista del usuario
-    public static Target LINK_BACK_TO_LISTS = Target.the("Back to user lists").located(By.cssSelector("a[href='/u/Jaideen/lists']"));
 
 }

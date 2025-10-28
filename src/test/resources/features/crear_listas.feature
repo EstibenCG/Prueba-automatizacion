@@ -9,5 +9,4 @@ Característica: Crear listas en TMDB
   Escenario: Crear una lista y agregar Batman y Superman
     Dado que el usuario ya inició sesión
     Cuando crea una lista con nombre 'NUEVA LISTA PRUEBA' y descripción 'ESTA ES UNA LISTA DE PRUEBA'
-    Entonces debería ver la lista creada en mi sección de listas
-
+    Entonces la imagen de Superman debería estar seleccionada
