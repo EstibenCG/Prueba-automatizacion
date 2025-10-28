@@ -1,0 +1,12 @@
+# Gradle y build
+.gradle/
+build/
+target/
+
+# IDE
+.idea/
+*.iml
+
+# Otros
+*.log
+*.tmp
