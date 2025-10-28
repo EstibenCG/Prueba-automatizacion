@@ -13,12 +13,10 @@ public class CrearListasStepDefinitions {
 
     @Dado("^que el usuario ya inició sesión$")
     public void queElUsuarioYaInicioSesion() {
-        // Hook @login debe dejar la sesión iniciada
     }
 
     @Cuando("^crea una lista con nombre '(.+)' y descripción '(.+)'$")
     public void creaUnaListaConNombreYDescripcion(String nombre, String descripcion) {
-        // Recordar el nombre de la lista por si queremos usarlo después
         theActorInTheSpotlight().remember("LIST_NAME", nombre);
 
         theActorInTheSpotlight().attemptsTo(
@@ -28,7 +26,6 @@ public class CrearListasStepDefinitions {
 
     @Entonces("^la imagen de Superman debería estar seleccionada$")
     public void deberiaVerLaListaCreadaEnMiSeccionDeListas() {
-        // Comprobación simplificada: el test termina cuando la imagen fue seleccionada
         boolean imagenSeleccionada = false;
         Object recall = theActorInTheSpotlight().recall("IMAGE_SELECTED");
         if (recall instanceof Boolean) {

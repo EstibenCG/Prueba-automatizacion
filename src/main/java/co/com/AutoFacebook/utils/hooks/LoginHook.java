@@ -16,7 +16,6 @@ public class LoginHook {
 
     @Before("@login")
     public void loginBeforeScenario() {
-        // Asegurar el cast (si ya existe otro hook global, esto no perjudica)
         setTheStage(new OnlineCast());
         theActorCalled("Usuario");
 
@@ -40,4 +39,3 @@ public class LoginHook {
         return lista;
     }
 }
-
